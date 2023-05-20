@@ -21,15 +21,6 @@ def get_bet_suggestions(content_text: str):
     # send prompt to openai
     return send_message_to_openai(prompt)
 
-def identify_event_properties(content_text: str):
-    sanitized_text = html_util.get_text_from_html(content_text)
-    prompt = f"{prompts.GET_EVENT_PROPERTIES}\nTEXT[{sanitized_text}]"
-    return send_message_to_openai(prompt)
-
-def identify_pick_properties(content_text: str):
-    prompt = f"{prompts.GET_PICK_PROPERTIES}\n'''{content_text}'''"
-    return send_message_to_openai(prompt)
-
 if __name__ == '__main__':
     response = get_bet_suggestions(content.example_03)
 
