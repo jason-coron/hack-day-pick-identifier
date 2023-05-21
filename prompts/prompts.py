@@ -28,6 +28,7 @@ GET_EVENTS_AND_PICKS_FROM_CONTENT = """Parse the article and extract the suggest
            "away": "<AWAY>"
          },
          "time": "<EVENT_TIME>",
+         "time": "<EVENT_DATE>",
          "bets": [
            {
              "line_type": "<LINE_TYPE>",
