@@ -1,0 +1,1 @@
+rg_example_nba = 'https://rotogrinders.com/articles/best-nba-player-prop-bets-for-denver-nuggets-vs-los-angeles-lakers-game-3-may-20-3898268'

@@ -1,6 +1,6 @@
 # These are saved in chatGPT as commands.
 
-GET_EVENTS_AND_PICKS = """Parse the article and extract the suggested bets with the following properties:
+GET_EVENTS_AND_PICKS_FROM_CONTENT = """Parse the article and extract the suggested bets with the following properties:
 1. For each suggested bet:
    a. Identify the line type (moneyline, spread, total). It the side of the bet is over or under, the line type will be total.
    b. Determine the period type (game, quarter, half etc.), assuming "game" if not mentioned.

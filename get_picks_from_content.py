@@ -1,10 +1,12 @@
 
 import os
 import openai
-import prompts.pick_identifier_prompts as prompts
+import prompts.prompts as prompts
 import content.content_examples as content
-import util.html_util as html_util
+import content.content_urls as urls
 import util.clipboard_util as clipboard_util
+import util.html_util as html_util
+import util.scrape_util as scrape_util
 
 def send_message_to_openai(prompt: str):
 
@@ -12,17 +14,18 @@ def send_message_to_openai(prompt: str):
 
     return openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0, max_tokens=500)
 
-def get_bet_suggestions(content_text: str):
+def get_bet_suggestions(content):
     # remove html tags
-    sanitized_text = html_util.get_text_from_html(content_text)
     # build prompt
-    prompt = f"{prompts.GET_EVENTS_AND_PICKS}\nTEXT[{sanitized_text}]"
+    prompt = f"{prompts.GET_EVENTS_AND_PICKS_FROM_CONTENT}\nTEXT[{content}]"
 
     # send prompt to openai
     return send_message_to_openai(prompt)
 
 if __name__ == '__main__':
-    response = get_bet_suggestions(content.example_04)
+    text = scrape_util.scrape_article(urls.rg_example_nba)
+
+    response = get_bet_suggestions(text)
 
     print(response.choices[0].text.strip())
     clipboard_util.copy(response.choices[0].text.strip())
