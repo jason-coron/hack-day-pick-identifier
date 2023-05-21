@@ -22,7 +22,7 @@ def get_bet_suggestions(content_text: str):
     return send_message_to_openai(prompt)
 
 if __name__ == '__main__':
-    response = get_bet_suggestions(content.example_03)
+    response = get_bet_suggestions(content.example_04)
 
     print(response.choices[0].text.strip())
     clipboard_util.copy(response.choices[0].text.strip())

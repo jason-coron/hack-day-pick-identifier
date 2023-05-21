@@ -2,10 +2,10 @@
 
 GET_EVENTS_AND_PICKS = """Parse the article and extract the suggested bets with the following properties:
 1. For each suggested bet:
-   a. Identify the line type (moneyline, spread, total).
+   a. Identify the line type (moneyline, spread, total). It the side of the bet is over or under, the line type will be total.
    b. Determine the period type (game, quarter, half etc.), assuming "game" if not mentioned.
    c. Determine if the bet is a prop bet.
-   d. Extract the specific bet type (strikeouts, outs recorded, etc.).
+   d. Extract the specific bet type (strikeouts, outs recorded, Anytime Goalscorer etc.).
    e. Identify the side of the bet (over, under, home, away, etc.).
    f. Extract the numeric value associated with the bet.
    g. Identify the player if mentioned.
@@ -14,18 +14,18 @@ GET_EVENTS_AND_PICKS = """Parse the article and extract the suggested bets with 
 
 2. Identify the events mentioned in the article.
    a. Event name
-   b. City for each team (home and away) mentioned in the event.
-   c. Event date
-   d. Event time
+   b. Teams including the city for each team (home and away) mentioned in the event.
+   c. Event date as a string in YYYY-MM-DD format. If not able to determine, assume it is the next event involving the teams or players mentioned.
+   d. Event time as a string in HH:MM:SS format. If not able to determine, assume it is the next event involving the teams or players mentioned.
 
 3. Structure the output in JSON format with the following structure:
    {
      "events": [
        {
          "event_name": "<EVENT_NAME>",
-         "city": {
-           "home": "<HOME_CITY>",
-           "away": "<AWAY_CITY>"
+         "teams": {
+           "home": "<HOME>",
+           "away": "<AWAY>"
          },
          "time": "<EVENT_TIME>",
          "bets": [
